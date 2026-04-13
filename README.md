@@ -1,4 +1,4 @@
-# 📌 ETL com Apache Airflow — Integração API Cosmos → PostgreSQL
+# 📌 ETL com Apache Airflow — Integração API → PostgreSQL
 
 Este repositório contém meu **primeiro projeto utilizando Apache Airflow**, desenvolvido para orquestrar um fluxo ETL simples e modularizado.  
 O objetivo principal foi consumir dados de uma API (CosmosPro), armazená-los em uma tabela *staging* e, posteriormente, carregá-los em uma tabela final no PostgreSQL.
@@ -21,7 +21,7 @@ O fluxo ETL foi dividido em duas etapas principais:
 
 ### **1️⃣ Extração para Staging**
 
-- Autentica na API CosmosPro usando uma conexão criada no Airflow (`api_cosmos_conn`).
+- Busca a autenticação em uma API usando uma conexão criada no Airflow (`api_conn`).
 - Realiza uma requisição POST à API.
 - Cria (se não existir) e limpa a tabela `staging_usuarios_api`.
 - Insere os dados brutos retornados pela API na tabela de staging.
@@ -36,7 +36,7 @@ O fluxo ETL foi dividido em duas etapas principais:
 
 ## 🏗️ Estrutura da DAG
 
-A DAG (`dag_etl_cosmos_modularizado`) é composta por dois **PythonOperators**:
+A DAG (`dag_etl_`) é composta por dois **PythonOperators**:
 
 ```mermaid
 flowchart LR
