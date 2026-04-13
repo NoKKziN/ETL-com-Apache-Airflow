@@ -12,10 +12,10 @@ import requests
 
 def conectar_api():
     """
-    Conecta à API CosmosPro via conexão Airflow (`api_cosmos_conn`)
+    Conecta à API via conexão Airflow (`api_cosmos_conn`)
     e retorna o token de autenticação Bearer.
     """
-    conn = BaseHook.get_connection("api_cosmos_conn")
+    conn = BaseHook.get_connection("api_conn")
     token = conn.password
     return {'Authorization': f'Bearer {token}'}
 
@@ -126,12 +126,12 @@ def carregar_dados_finais():
 # 3️⃣ DAG principal
 # ======================================================
 with DAG(
-    dag_id="dag_etl_cosmos_modularizado",
+    dag_id="dag_etl",
     start_date=datetime(2025, 10, 28),
     schedule_interval=None,
     catchup=False,
     tags=["etl", "api", "postgres", "staging"],
-    description="ETL escalável com staging (API Cosmos -> PostgreSQL)"
+    description="ETL escalável com staging (API -> PostgreSQL)"
 ) as dag:
     
     t1_extrair = PythonOperator(
